@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ChromeWebDriver {
 
+    private static WebDriver driver;
+
     public static void setupChromeDriver() {
         WebDriverManager.chromedriver().setup();
     }
@@ -20,7 +22,7 @@ public class ChromeWebDriver {
         ChromeOptions options = new ChromeOptions();
         options.addArguments(chromeArgument);
 
-        WebDriver driver = new ChromeDriver(driverService, options);
+        driver = new ChromeDriver(driverService, options);
         return driver;
     }
 }
