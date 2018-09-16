@@ -6,16 +6,16 @@ Feature: BaseScenarios
     Given I navigate to the base URL
 
   Scenario: 01. Validate the title of a website
-    Then I see the page title contains "Google"
+    Then I see the page title contains "DuckDuckGo"
 
   Scenario: 02. Validate the Url of the website
-    Then I see the page Url contains "https://www.google.com"
+    Then I see the page Url contains "https://start.duckduckgo.com"
 
   Scenario: 03. Validate the PageSource string on the website
-    Then I see "Google Search" in the PageSource
+    Then I see "DuckDuckGo" in the PageSource
 
   Scenario: 04. Validate existence of multiple texts in PageSource
     Then I see
-      | Gmail         |
-      | Images        |
-      | Google Search |
+      | DuckDuckGo    |
+      | search engine |
+      | track you     |
