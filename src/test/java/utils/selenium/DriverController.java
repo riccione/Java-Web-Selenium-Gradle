@@ -34,10 +34,10 @@ public class DriverController {
         }
         catch (Exception e)
         {
-            log.info(e + "::WebDriver stop error");
+            log.error(e + "::WebDriver stop error");
         }
 
         instance.webDriver = null;
-        log.info(":: WebDriver stopped");
+        log.debug(":: WebDriver stopped");
     }
 }
