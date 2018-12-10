@@ -3,10 +3,10 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import java.util.List;
 
-import static utils.extensions.WebElementExtensions.weClick;
-import static utils.extensions.WebElementExtensions.weElementIsDisplayed;
+import static utils.extensions.WebElementExtensions.*;
+
+import java.util.List;
 
 public class SearchResultsPage extends BasePage {
 
@@ -16,12 +16,17 @@ public class SearchResultsPage extends BasePage {
     @FindBy(how = How.ID, using = "links")
     public WebElement searchResultsContainer;
 
-    public RedditPage selectFirstListedSearchResult() {
+    public void viewFirstResult() {
+        assertSearchResultsDisplayed();
+        selectFirstListedSearchResult();
+    }
+
+    private RedditPage selectFirstListedSearchResult() {
         weClick(searchResultLinks.get(0));
         return instanceOf(RedditPage.class);
     }
 
-    public void assertSearchResultsDisplayed() {
+    private void assertSearchResultsDisplayed() {
         weElementIsDisplayed(searchResultsContainer);
     }
 }

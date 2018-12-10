@@ -3,7 +3,7 @@ Feature: BaseScenarios
   These scenarios can be used in any project
 
   Background:
-    Given I navigate to the base URL
+    Given I am on the base page
 
   Scenario: 01. Validate the title of a website
     Then I see the page title contains "DuckDuckGo"
@@ -16,6 +16,6 @@ Feature: BaseScenarios
 
   Scenario: 04. Validate existence of multiple texts in PageSource
     Then I see
-      | DuckDuckGo    |
-      | search engine |
-      | track you     |
+      | DuckDuckGo     |
+      | search engine  |
+      | track you      |

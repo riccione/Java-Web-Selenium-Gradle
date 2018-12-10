@@ -4,6 +4,7 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import pages.BasePage;
+import pages.RedditPage;
 import pages.SearchResultsPage;
 
 import java.util.List;
@@ -25,13 +26,13 @@ public class ValidationSteps extends BaseSteps {
         instanceOf(BasePage.class).validatePageSource(expectedPageSource);
     }
 
-    @And("^I see search results returned$")
-    public void iSeeSearchResultsReturned() {
-        instanceOf(SearchResultsPage.class).assertSearchResultsDisplayed();
-    }
-
     @Then("^I see$")
     public void iSee(List<String> existsInPageSource) {
         instanceOf(BasePage.class).validateMultipleInPageSource(existsInPageSource);
+    }
+
+    @Then("^I see the Reddit homepage$")
+    public void iSeeTheRedditHomepage() {
+        instanceOf(RedditPage.class).assertIAmOnRedditPage();
     }
 }

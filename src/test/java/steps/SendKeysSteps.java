@@ -6,7 +6,7 @@ import pages.BasePage;
 public class SendKeysSteps extends BaseSteps {
 
     @When("^I search for \"([^\"]*)\"$")
-    public void iSearchFor(String searchTerm) throws Throwable {
+    public void iSearchFor(String searchTerm) {
         instanceOf(BasePage.class).searchFor(searchTerm);
     }
 }

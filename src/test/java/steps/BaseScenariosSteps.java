@@ -1,13 +1,12 @@
 package steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import pages.BasePage;
 
 public class BaseScenariosSteps extends BaseSteps {
 
-    @Given("^I navigate to the base URL")
-    public void iNavigateToTheBaseURL() {
-        instanceOf(BasePage.class).navigateBaseUrl();
+    @Given("^I am on the (?:base|search) page$")
+    public void iAmOnTheBasePage() {
+        instanceOf(BasePage.class).navigateToBaseUrl();
     }
 }

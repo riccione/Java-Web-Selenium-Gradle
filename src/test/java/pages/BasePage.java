@@ -1,5 +1,7 @@
 package pages;
 
+import static utils.selenium.Driver.browser;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,13 +11,11 @@ import org.testng.Assert;
 import utils.selenium.Settings;
 import java.util.List;
 
-import static utils.extensions.WebElementExtensions.weSendKeys;
-import static utils.selenium.Driver.browser;
+import static utils.extensions.WebElementExtensions.*;
 
 public class BasePage extends Page {
 
     public WebDriver driver = browser();
-
     private String getTitle() { return driver.getTitle(); }
     private String getUrl() {return driver.getCurrentUrl(); }
     private String getPageSource() {return driver.getPageSource(); }
@@ -28,7 +28,7 @@ public class BasePage extends Page {
         return instanceOf(SearchResultsPage.class);
     }
 
-    public void navigateBaseUrl() {
+    public void navigateToBaseUrl() {
         String baseUrl = Settings.baseUrl;
         browser().navigate().to(baseUrl);
         System.out.println("Welcome to Product - Selenium Automation Framework");
@@ -40,6 +40,8 @@ public class BasePage extends Page {
     }
 
     public void validatePageUrl(String expectedUrl) {
+        String test = getUrl();
+
         Assert.assertTrue(getUrl().contains(expectedUrl));
         System.out.println(":: The page Url is: " + getUrl());
     }

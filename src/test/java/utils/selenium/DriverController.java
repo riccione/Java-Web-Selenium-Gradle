@@ -12,7 +12,7 @@ public class DriverController {
 
     WebDriver webDriver;
 
-    private static Logger log = LogManager.getLogger();
+    private static Logger log = LogManager.getLogger(DriverController.class.getName());
 
     public void startChrome(String arg) {
         if(instance.webDriver != null) return;
@@ -30,7 +30,6 @@ public class DriverController {
         try
         {
             instance.webDriver.quit();
-            instance.webDriver.close();
         }
         catch (Exception e)
         {
