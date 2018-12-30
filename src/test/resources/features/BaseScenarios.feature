@@ -1,4 +1,4 @@
-@Chrome
+@Web
 Feature: BaseScenarios
   These scenarios can be used in any project
 

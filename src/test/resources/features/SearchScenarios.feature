@@ -1,4 +1,4 @@
-@Firefox
+@Web
 Feature: Search Scenarios
   As a user of Google, I want to be able to search for stuff
 
