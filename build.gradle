@@ -22,7 +22,6 @@ dependencies {
     compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version:'2.2.4'
     compile group: 'org.json', name: 'json', version:'20180130'
     testCompile group: 'io.github.prashant-ramcharan', name: 'courgette-jvm', version: '3.0.1'
-    testCompile group: 'io.rest-assured', name: 'rest-assured', version:'3.1.0'
 }
 
 tasks.withType(Test) {
@@ -31,8 +30,7 @@ tasks.withType(Test) {
 }
 
 task runTests(type: Test) {
-    useTestNG()
-
+    useTestNG() // specify that we use TestNG instead of JUnit
     include '**/TestRunner.class'
     outputs.upToDateWhen { false }
 }

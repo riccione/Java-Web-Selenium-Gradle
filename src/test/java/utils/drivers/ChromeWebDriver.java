@@ -10,7 +10,7 @@ public class ChromeWebDriver {
 
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static void setupChromeDriver() {
+    private static void setupChromeDriver() {
         WebDriverManager.chromedriver().setup();
     }
 
