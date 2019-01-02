@@ -8,9 +8,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ChromeWebDriver {
 
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static void setupChromeDriver() {
+    private static void setupChromeDriver() {
         WebDriverManager.chromedriver().setup();
     }
 
@@ -22,7 +22,7 @@ public class ChromeWebDriver {
         ChromeOptions options = new ChromeOptions();
         options.addArguments(chromeArgument);
 
-        driver = new ChromeDriver(driverService, options);
-        return driver;
+        driver = ThreadLocal.withInitial(() -> new ChromeDriver(driverService, options));
+        return driver.get();
     }
 }

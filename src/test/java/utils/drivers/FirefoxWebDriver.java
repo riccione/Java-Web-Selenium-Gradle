@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class FirefoxWebDriver {
 
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     private static void setupFirefoxDriver() {
         WebDriverManager.firefoxdriver().setup();
@@ -19,7 +19,7 @@ public class FirefoxWebDriver {
         FirefoxOptions options = new FirefoxOptions();
         options.addArguments(firefoxArgument);
 
-        driver = new FirefoxDriver(options);
-        return driver;
+        driver = ThreadLocal.withInitial(() -> new FirefoxDriver(options));
+        return driver.get();
     }
 }

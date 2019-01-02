@@ -1,44 +1,27 @@
+import courgette.api.CourgetteOptions;
+import courgette.api.CourgetteRunLevel;
+import courgette.api.testng.TestNGCourgette;
 import cucumber.api.CucumberOptions;
-import cucumber.api.testng.CucumberFeatureWrapper;
-import cucumber.api.testng.TestNGCucumberRunner;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-@CucumberOptions(
-        features = "src/test/resources/features",
-        glue = {"utils.hooks", "steps"},
-        tags = {"~@Ignore"},
-        plugin = {"html:target/cucumber-reports/cucumber-pretty"},
-        format = {
-                "pretty",
-                "html:target/cucumber-reports/cucumber-pretty",
-                "json:target/cucumber-reports/CucumberTestReport.json",
-                "rerun:target/cucumber-reports/rerun.txt"
-        })
+@Test
+@CourgetteOptions(
+        threads = 2,
+        runLevel = CourgetteRunLevel.FEATURE,
+        rerunFailedScenarios = true,
+        showTestOutput = true,
+        reportTargetDir = "build",
+        cucumberOptions = @CucumberOptions(
+                features = "src/test/resources/features",
+                glue = {"utils.hooks", "steps"},
+                tags = {"@Web"},
+                plugin = {
+                        "pretty",
+                        "json:build/cucumber-report/cucumber.json",
+                        "html:build/cucumber-report/cucumber.html"},
+                strict = true
+        ))
 
-public class TestRunner {
+public class TestRunner extends TestNGCourgette {
 
-    private TestNGCucumberRunner testNGCucumberRunner;
-
-    @BeforeClass(alwaysRun = true)
-    public void setUpClass() {
-        testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-    }
-
-    @Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
-    public void feature(CucumberFeatureWrapper cucumberFeature) {
-        testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
-    }
-
-    @DataProvider
-    public Object[][] features() {
-        return testNGCucumberRunner.provideFeatures();
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void tearDownClass() {
-        testNGCucumberRunner.finish();
-    }
 }
